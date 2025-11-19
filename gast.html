@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .min{
+            border :solid 10vh ;
+            background-color: black;
+            height:50vh ;
+            width:50vh ;
+            visibility: visible;
+        }
+        .butt{
+            border-radius:15vh ;
+          height:5vh ;
+          width:14vh ;  
+          background-color:green ;
+        }
+        .ff{
+          display: none;  
+        }
+    </style>
+</head>
+<body>
+<div class="min"> <iframe class="ff" width="100%" height="315" src="https://www.youtube.com/embed/HZtbD074LUY?si=rje-MtJ_USlpyucq" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+<button class="butt" ></button>
+<script>
+ let elem = document.querySelector(".min");
+ let darkblue = document.querySelector(".butt")
+  let darblue = document.querySelector(".ff")
+darblue.onclick = function () {
+  toggle = 0;
+      if (darblue === 0) {
+  elem.style.display = 'none';
+  toggle = 1;
+  } else {
+  toggle = 1;
+   elem.style.backgroundColor = 'block';
+  }
+}
+</script>
+
+</html>

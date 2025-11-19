@@ -1,0 +1,26 @@
+#pokemon {
+    height: 210vh;
+    width: 170vh;
+    background-color: black;
+    margin: 10px auto;
+    border: 1px solid silver;
+    border-radius: 5px;
+}
+#film{
+    height: 90%;
+    width: 90%;
+    margin-top: 1%;
+    margin-left: 1%;
+    background-color: gold;
+    background-image :url(//www.pngplay.com/wp-content/uploads/10/Arceus-Pokemon-Background-PNG-Image.png) ;
+    background-repeat: no-repeat;
+}
+    #aries{
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background-color: rgb(234, 113, 27);
+    position: absolute;
+    left: 47%;
+    bottom: 5%;
+    }

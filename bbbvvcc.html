@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>moving ant</title>
+</head>
+<body>
+<style>
+    .ccsxxcxvc{
+     height:4vh ;
+  width:7vh ;
+    background-color:brown;
+    border-radius:20vh ; 
+    position: absolute;
+    left:180vh ;
+    top:60vh ;
+}
+.ccs{
+      height:20vh ;
+  width:20vh ;
+      border-radius:20vh ;
+     background-color:green; 
+    position: absolute;
+    top: 40vh;
+    left: 30vh;
+}
+.ccshg{
+      height:20vh ;
+  width:20vh ;
+      border-radius:20vh ;
+     background-color:red; 
+    position: absolute;
+    top: 40vh;
+    left:50vh ;
+}
+</style>
+ <div class="ccsxxcxvc"></div>
+<div class="ccs"></div>
+<div class="ccshg"></div>
+    <script>
+        let boxpostion = 0;
+        let antmover=document.querySelector(".ccsxxcxvc");
+        let antmoverbutton=document.querySelector(".ccs");
+            antmoverbutton.onclick=function (){
+            //alert("antmoverbutton has been clicked")
+              boxpostion=boxpostion+10;
+             antmover.style.left=boxpostion+"vh"
+            } 
+            let  antiantmoverbutton=document.querySelector(".ccshg");
+            antiantmoverbutton.onclick=function() {
+         //alert("antiantmoverbutton has been clicked")
+         boxpostion=boxpostion-10;
+         antmover.style.left=boxpostion+"vh"
+         }
+        let  upantmoverbutton=document.querySelector(".ccsopg");
+            upantmoverbutton.onclick=function() {
+         //alert("antiantmoverbutton has been clicked")
+         boxpostion=boxpostion+10;
+         antmover.style.bottom=boxpostion+"vh"
+            }
+    </script>
+</body>
+</html

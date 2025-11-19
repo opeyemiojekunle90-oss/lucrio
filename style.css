@@ -1,0 +1,25 @@
+h1{
+background-color: brown;
+}
+.mother{
+height:49vh;
+background-color:cadetblue ;
+  display:flex;                                 
+justify-content:center;
+align-items:center; 
+
+
+
+
+}   
+.mother p{
+   width:100px ;  
+   height:100px ;
+   background-color:  green;
+margin:15px ;
+
+}
+
+
+
+

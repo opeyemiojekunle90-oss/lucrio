@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enhanced Browser</title>
+  <style>
+    /*
+     * Custom Properties (Variables)
+     * For easy maintenance of colors and animation settings.
+     */
+    :root {
+      --box-border-color: orange;
+      --increase-btn-bg-color:orange ; /* Modern green */
+      --decrease-btn-bg-color:orange; /* Modern red */
+      --button-text-color: #fff;
+      --maximum-bg-color: #f0f0f0; /* Light gray background */
+      --transition-duration: 0.5s;
+      --transition-easing: ease;
+    }
+
+    /* Basic resets and full viewport sizing for the container */
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      overflow: hidden; /* Prevents scrollbars from appearing unexpectedly */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+      background-color: var(--maximum-bg-color);
+    }
+    
+    .button-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+      display: flex;
+      gap: 1rem; /* Space between buttons */
+    }
+
+    .box {
+      height: 50px;
+      width: 50px;
+      border: 2px solid var(--box-border-color);
+      max-width: 500px;
+      max-height: 400px;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      transition: background-color var(--transition-duration) var(--transition-easing),
+                  width var(--transition-duration) var(--transition-easing),
+                  height var(--transition-duration) var(--transition-easing),
+                  background-image var(--transition-duration) var(--transition-easing);
+      background-size: 400%;
+    }
+    
+    .btn {
+      color: var(--button-text-color);
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+    
+    .btn-increase {
+      background-color: var(--increase-btn-bg-color);
+    }
+    
+    .btn-decrease {
+      background-color: var(--decrease-btn-bg-color);
+    }
+
+    /* Improved button hover and focus states for accessibility */
+    .btn-increase:hover {
+      background-color:1;
+    }
+    
+    .btn-decrease:hover {
+      height:1 ;
+    }
+
+    .btn:focus {
+      outline: 2px solid #007bff;
+      outline-offset: 2px;
+    }
+
+    /* Rainbow animation */
+    @keyframes rainbow-animation {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .animated-rainbow {
+      background-image: linear-gradient(
+        to right,
+        #FF0000, #FF7F00, #FFFF00, #00FF00, #0000FF, #4B0082, #8B00FF
+      );
+      animation: rainbow-animation 10s linear infinite;
+    }
+    
+    /* Animation for the reversed rainbow */
+    @keyframes rainbow-animation-reverse {
+      0% { background-position: 100% 50%; }
+      50% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+
+    .animated-rainbow.reverse {
+      animation: rainbow-animation-reverse 10s linear infinite;
+    }
+  </style>
+</head>
+<body>
+  <div class="box"></div>
+  
+  <div class="button-container">
+    <button class="btn btn-increase" role="button" aria-label="Click to increase box color and size"></button>
+    <button class="btn btn-decrease" role="button" aria-label="Click to decrease box color and size"></button>
+  </div>
+  
+  <script>
+    const myBox = document.querySelector(".box");
+    const increaseBtn = document.querySelector(".btn-increase");
+    const decreaseBtn = document.querySelector(".btn-decrease");
+    
+    const MIN_SIZE = 50;
+    const SIZE_INCREMENT = 20;
+    
+    const rainbowColors = [
+      '#FF0000', // Red
+      '#FF7F00', // Orange
+      '#FFFF00', // Yellow
+      '#00FF00', // Green
+      '#0000FF', // Blue
+      '#4B0082', // Indigo
+      '#8B00FF'  // Violet
+    ];
+    
+    let colorIndex = 0;
+    
+    increaseBtn.addEventListener("click", () => {
+      let currentWidth = myBox.offsetWidth;
+      let currentHeight = myBox.offsetHeight;
+      
+      // Ensure dimensions don't exceed max-width/max-height set in CSS
+      if (currentWidth < 500) {
+        myBox.style.width = (currentWidth + SIZE_INCREMENT) + "px";
+      }
+      if (currentHeight < 400) {
+        myBox.style.height = (currentHeight + SIZE_INCREMENT) + "px";
+      }
+      
+      // If still cycling through solid colors
+      if (colorIndex < rainbowColors.length) {
+        myBox.classList.remove('animated-rainbow');
+        myBox.classList.remove('reverse');
+        myBox.style.backgroundColor = rainbowColors[colorIndex];
+        colorIndex++;
+      } 
+      // If all solid colors have been shown, switch to the animated rainbow
+      else {
+        myBox.style.backgroundColor = '';
+        myBox.classList.add('animated-rainbow');
+        myBox.classList.remove('reverse');
+        colorIndex = 0; // Reset for the next cycle
+      }
+    });
+    
+    decreaseBtn.addEventListener("click", () => {
+      let currentWidth = myBox.offsetWidth;
+      let currentHeight = myBox.offsetHeight;
+      
+      // Prevent the box from shrinking below the minimum size
+      if (currentWidth > MIN_SIZE) {
+        myBox.style.width = (currentWidth - SIZE_INCREMENT) + "px";
+      }
+      if (currentHeight > MIN_SIZE) {
+        myBox.style.height = (currentHeight - SIZE_INCREMENT) + "px";
+      }
+      
+      // If the box is currently an animated rainbow, toggle the direction.
+      if (myBox.classList.contains('animated-rainbow')) {
+          myBox.classList.toggle('reverse');
+      } 
+      // If not animated and not at the minimum size, cycle the color backward.
+      else if (currentWidth > MIN_SIZE || currentHeight > MIN_SIZE) {
+          if (colorIndex > 1) {
+              colorIndex--;
+              myBox.style.backgroundColor = rainbowColors[colorIndex - 1];
+          }
+      }
+    });
+  </script>
+</body>
+</html>

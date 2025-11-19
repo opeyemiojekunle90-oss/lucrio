@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            margin: 5px;
+            width: 50px;
+            height: 50px;
+            border: 1px solid black;
+            
+        }
+        .mother{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            align-items: center;
+        }
+        /* mobile screen code */
+        @media (min-width: 320px) and (max-width: 480px) {
+                .box{
+                background-color: red;
+                padding: 2%;
+                width: 100%;
+            }
+        }
+        /* tablet screen code */
+        @media (min-width: 481px) and (max-width: 768px) { 
+                .box{
+                background-color: green;
+                padding: 2%;
+                width: 40%;
+            }
+        }
+        /* desktop screen code */
+        @media (min-width: 769px) and (max-width: 1024px) {
+                .box{
+                background-color: blue;
+                padding: 2%;
+                width: 20%;
+            }
+        }
+        /* large desktop screen code */
+        @media (min-width: 1025px) and (max-width: 2000px){
+                .box{
+                background-color: yellow;
+                padding: 2%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="mother">
+        <div class="box">
+            Hello 1
+        </div>
+        <div class="box">
+            Hello 2
+        </div>
+        <div class="box">
+            Hello 3
+        </div>
+        <div class="box">
+            Hello 4
+        </div>
+        <div class="box">
+            Hello 5
+        </div>
+    </section>
+
+    <script>
+        // alert(screen.width)
+        // alert(screen.height)
+    </script>
+</body>
+</html
